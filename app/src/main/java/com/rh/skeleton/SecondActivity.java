@@ -14,5 +14,10 @@ public class SecondActivity extends BaseActivity {
         setContentView(R.layout.second);
     }
 
+    @Override
+    protected String getTag() {
+        return SecondActivity.class.getSimpleName();
+    }
+
 
 }

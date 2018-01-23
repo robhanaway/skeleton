@@ -3,6 +3,8 @@ package com.rh.skeleton;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.rh.skeleton.logging.Logging;
+
 import javax.inject.Inject;
 
 /**
@@ -12,6 +14,9 @@ import javax.inject.Inject;
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Inject
+    Logging logging;
+
+    @Inject
     DataManager mDataManager;
     private ActivityComponent activityComponent;
 
@@ -19,7 +24,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivityComponent().inject(this);
+        logging.d(getTag(), "onCreate");
     }
+
+    protected abstract String getTag();
+
     public ActivityComponent getActivityComponent() {
         if (activityComponent == null) {
             activityComponent = DaggerActivityComponent.builder()
