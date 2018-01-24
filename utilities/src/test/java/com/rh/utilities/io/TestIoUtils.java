@@ -29,7 +29,7 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 
 public class TestIoUtils {
     final static int STREAM_SIZE = 123;
-
+    final static String TAG = "someText";
     Logging logging;
     IoUtils ioUtils;
 
@@ -47,14 +47,15 @@ public class TestIoUtils {
         ByteArrayInputStream stream = new ByteArrayInputStream(new byte[STREAM_SIZE]);
         byte[] buffer = new byte[STREAM_SIZE * 2];
 
-        int read = ioUtils.read(stream, buffer);
+        int read = ioUtils.read(TAG, stream, buffer);
         Assert.assertEquals(STREAM_SIZE, read);
         Assert.assertEquals(STREAM_SIZE, ioUtils.getBytesRead());
 
         stream.reset();
-        read = ioUtils.read(stream, buffer);
+        read = ioUtils.read(TAG, stream, buffer);
         Assert.assertEquals(STREAM_SIZE, read);
         Assert.assertEquals(STREAM_SIZE*2, ioUtils.getBytesRead());
+        Assert.assertEquals(STREAM_SIZE*2, ioUtils.getBytesRead(TAG));
 
         ioUtils.reset();
         Assert.assertEquals(0, ioUtils.getBytesRead());
@@ -73,10 +74,23 @@ public class TestIoUtils {
     public void testWrite() throws IOException {
         byte[] buffer = new byte[STREAM_SIZE];
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ioUtils.write(outputStream, buffer);
+        ioUtils.write(TAG, outputStream, buffer);
         Assert.assertEquals(STREAM_SIZE, ioUtils.getBytesWritten());
-        ioUtils.write(outputStream, buffer);
+        ioUtils.write(TAG, outputStream, buffer);
         Assert.assertEquals(STREAM_SIZE*2, ioUtils.getBytesWritten());
         Assert.assertEquals(STREAM_SIZE*2, outputStream.toByteArray().length);
+        Assert.assertEquals(STREAM_SIZE*2, ioUtils.getBytesWritten(TAG));
+        ioUtils.reset(TAG);
+        Assert.assertEquals(IoUtils.UNKNOWN, ioUtils.getBytesWritten(TAG));
+        Assert.assertEquals(STREAM_SIZE * 2, ioUtils.getBytesWritten());
+
+        ioUtils.reset();
+        Assert.assertEquals(0, ioUtils.getBytesWritten());
+    }
+
+    @Test
+    public void testGetUnknownValues() {
+        Assert.assertEquals(IoUtils.UNKNOWN, ioUtils.getBytesWritten(TAG));
+        Assert.assertEquals(IoUtils.UNKNOWN, ioUtils.getBytesRead(TAG));
     }
 }

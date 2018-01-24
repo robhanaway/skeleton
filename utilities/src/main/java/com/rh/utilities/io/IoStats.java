@@ -5,39 +5,19 @@ package com.rh.utilities.io;
  */
 
 public class IoStats {
-    private long total;
+    protected final IoStat read = new IoStat();
+    protected final IoStat written = new IoStat();
 
-    public IoStats(long total) {
-        setTotal(total);
+    public IoStat getRead() {
+        return read;
     }
 
-    public IoStats() {
-        this(0);
-    }
-
-    public IoStats(final IoStats ioStats) {
-        this(ioStats.getTotal());
-    }
-
-    public long getTotal() {
-        return total;
-    }
-
-    public void setTotal(long total) {
-        this.total = total;
+    public IoStat getWritten() {
+        return written;
     }
 
     public void reset() {
-        this.total = 0;
-    }
-
-    public long add(long count) {
-        total += count;
-        return total;
-    }
-
-    @Override
-    public String toString() {
-        return "total:" + String.valueOf(total);
+        read.reset();
+        written.reset();
     }
 }
