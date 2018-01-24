@@ -3,7 +3,7 @@ package com.rh.skeleton;
 import android.app.Application;
 import android.content.Context;
 
-import com.rh.utilities.io.IOUtils;
+import com.rh.utilities.io.IoUtils;
 import com.rh.utilities.logging.Logging;
 
 import javax.inject.Singleton;
@@ -29,5 +29,5 @@ public interface ApplicationComponent {
 
     Logging getLogging();
 
-    IOUtils getIOUtils();
+    IoUtils getIOUtils();
 }

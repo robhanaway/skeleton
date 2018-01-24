@@ -77,7 +77,7 @@ public class Logging {
     }
 
 
-    private String format(String format, Object... args) {
+    public String format(String format, Object... args) {
         if(args != null && args.length > 0 && format != null) {
             try {
                 return String.format(format, args);

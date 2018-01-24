@@ -33,4 +33,14 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     compile 'javax.inject:javax.inject:1'
+
+    testCompile "org.mockito:mockito-all:${mockitoAllVersion}"
+    testCompile "org.powermock:powermock-api-mockito:${powerMockVersion}"
+    testCompile "org.powermock:powermock-module-junit4-rule-agent:${powerMockVersion}"
+    testCompile "org.powermock:powermock-module-junit4-rule:${powerMockVersion}"
+    testCompile "org.powermock:powermock-module-junit4:${powerMockVersion}"
+    testCompile "org.easymock:easymock:${easyMockVersion}"
+    testCompile "org.powermock:powermock-api-easymock:${powerMockVersion}"
+    testCompile "org.powermock:powermock-reflect:${powerMockVersion}"
+    testCompile "org.powermock:powermock-core:${powerMockVersion}"
 }
