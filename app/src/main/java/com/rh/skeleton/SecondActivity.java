@@ -18,6 +18,4 @@ public class SecondActivity extends BaseActivity {
     protected String getTag() {
         return SecondActivity.class.getSimpleName();
     }
-
-
 }

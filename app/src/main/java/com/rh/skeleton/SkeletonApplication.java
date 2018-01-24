@@ -2,6 +2,7 @@ package com.rh.skeleton;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
 
 import com.rh.skeleton.logging.Logging;
 
@@ -32,9 +33,14 @@ public class SkeletonApplication extends Application {
                 .build();
         applicationComponent.inject(this);
 
+        initialise();
+
         logging.d(TAG, "onCreate");
     }
 
+    void initialise() {
+        logging.setEnabled(BuildConfig.DEBUG);
+    }
 
     public static SkeletonApplication get(Context context) {
         return (SkeletonApplication) context.getApplicationContext();
