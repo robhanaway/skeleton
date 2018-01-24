@@ -3,7 +3,8 @@ package com.rh.skeleton;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.rh.skeleton.logging.Logging;
+import com.rh.utilities.io.IOUtils;
+import com.rh.utilities.logging.Logging;
 
 import javax.inject.Inject;
 
@@ -15,6 +16,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Inject
     Logging logging;
+
+    @Inject
+    IOUtils ioUtils;
 
     @Inject
     DataManager mDataManager;

@@ -1,4 +1,4 @@
-package com.rh.skeleton.logging;
+package com.rh.utilities.logging;
 
 import android.util.Log;
 
@@ -88,4 +88,9 @@ public class Logging {
         return format;
     }
 
+    public void log(String tag, Loggable loggable) {
+        if (enabled) {
+            loggable.log(tag, this);
+        }
+    }
 }

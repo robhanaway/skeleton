@@ -2,9 +2,8 @@ package com.rh.skeleton;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Build;
 
-import com.rh.skeleton.logging.Logging;
+import com.rh.utilities.logging.Logging;
 
 import javax.inject.Inject;
 

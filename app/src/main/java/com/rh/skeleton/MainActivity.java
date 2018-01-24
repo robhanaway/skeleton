@@ -11,6 +11,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         Intent intent = new Intent(this, SecondActivity.class);
         startActivity(intent);
+        logging.log(getTag(), ioUtils);
     }
 
     @Override
